@@ -29,7 +29,7 @@ export default function Login({ onLoginSuccess }) {
 
     try {
       // Connect to MERN auth endpoint
-      const res = await axios.post("http://localhost:5001/api/auth/login", {
+      const res = await axios.post(`${API_URL}/api/auth/login`, {
         username,
         password,
       });
@@ -49,7 +49,7 @@ export default function Login({ onLoginSuccess }) {
       if (user.role === "student") {
         // Fetch portfolio to check if completed
         try {
-          const portRes = await axios.get("http://localhost:5001/api/portfolio/my", {
+          const portRes = await axios.get(`${API_URL}/api/portfolio/my`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           const hasDetails = portRes.data?.personalInfo?.email !== "";

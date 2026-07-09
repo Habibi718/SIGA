@@ -12,7 +12,7 @@ export default function StudentPortfolio({ user, token, onLogout }) {
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/portfolio/my", {
+        const res = await axios.get(`${API_URL}/api/portfolio/my`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setPortfolio(res.data);

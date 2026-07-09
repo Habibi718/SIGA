@@ -15,7 +15,7 @@ export default function StudentAIMentor({ user, token, onLogout }) {
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/portfolio/my", {
+        const res = await axios.get(`${API_URL}/api/portfolio/my`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setPortfolio(res.data);
@@ -43,7 +43,7 @@ export default function StudentAIMentor({ user, token, onLogout }) {
 
     try {
       const res = await axios.post(
-        "http://localhost:5001/api/ai/ask",
+        `${API_URL}/api/ai/ask`,
         { message: userQuery },
         { headers: { Authorization: `Bearer ${token}` } }
       );

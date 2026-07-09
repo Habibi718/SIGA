@@ -13,7 +13,7 @@ export default function Settings({ user, token, onLogout }) {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/portfolio/my", {
+        const res = await axios.get(`${API_URL}/api/portfolio/my`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.data) {
@@ -35,7 +35,7 @@ export default function Settings({ user, token, onLogout }) {
     setSaving(true);
     try {
       // 1. Save personal info update
-      const res = await axios.get("http://localhost:5001/api/portfolio/my", {
+      const res = await axios.get(`${API_URL}/api/portfolio/my`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const currentPayload = res.data || {};
@@ -50,7 +50,7 @@ export default function Settings({ user, token, onLogout }) {
         }
       };
 
-      await axios.post("http://localhost:5001/api/portfolio/save", updatedPayload, {
+      await axios.post(`${API_URL}/api/portfolio/save`, updatedPayload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

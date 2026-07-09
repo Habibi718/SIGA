@@ -11,7 +11,7 @@ export default function HODDashboard({ user, token, onLogout }) {
 
   const fetchAnalytics = async () => {
     try {
-      const res = await axios.get("http://localhost:5001/api/hod/analytics", {
+      const res = await axios.get(`${API_URL}/api/hod/analytics`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAnalytics(res.data);

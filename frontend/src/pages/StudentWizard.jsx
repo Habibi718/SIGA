@@ -59,7 +59,7 @@ export default function StudentWizard({ user, token, onLogout }) {
   useEffect(() => {
     const loadPortfolio = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/portfolio/my", {
+        const res = await axios.get(`${API_URL}/api/portfolio/my`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -118,7 +118,7 @@ export default function StudentWizard({ user, token, onLogout }) {
         achievements,
       };
 
-      await axios.post("http://localhost:5001/api/portfolio/save", payload, {
+      await axios.post(`${API_URL}/api/portfolio/save`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

@@ -9,7 +9,7 @@ export default function FacultyDashboard({ user, token, onLogout }) {
 
   const fetchStudentsData = async () => {
     try {
-      const res = await axios.get("http://localhost:5001/api/portfolio/students", {
+      const res = await axios.get(`${API_URL}/api/portfolio/students`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setStudents(res.data);
@@ -50,7 +50,7 @@ export default function FacultyDashboard({ user, token, onLogout }) {
   const handleVerify = async (studentId, itemType, itemId, status) => {
     try {
       await axios.post(
-        "http://localhost:5001/api/portfolio/verify-item",
+        `${API_URL}/api/portfolio/verify-item`,
         { studentId, itemType, itemId, status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
