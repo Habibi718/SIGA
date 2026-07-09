@@ -1,0 +1,399 @@
+.student-dashboard-scope {
+.student-dashboard-scope * {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+.student-dashboard-scope {
+
+    background:#08152d;
+
+    color:white;
+
+}
+
+.dashboard{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+.sidebar{
+
+    width:270px;
+
+    background:#101f3e;
+
+    padding:30px;
+
+}
+
+.logo{
+
+    color:#00D4FF;
+
+    margin-bottom:35px;
+
+}
+
+.profile{
+
+    text-align:center;
+
+}
+
+.avatar{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#00D4FF,#6C63FF);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:38px;
+
+    margin-bottom:18px;
+
+}
+
+.profile p{
+
+    color:#b9c7e8;
+
+    margin-top:6px;
+
+}
+
+nav{
+
+    margin-top:40px;
+
+}
+
+nav a{
+
+    display:block;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px;
+
+    margin-bottom:12px;
+
+    border-radius:12px;
+
+    transition:.3s;
+
+}
+
+nav a:hover,
+
+nav a.active{
+
+    background:#00D4FF;
+
+    color:#08152d;
+
+}
+
+.main-content{
+
+    flex:1;
+
+    padding:40px;
+
+}
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.notification{
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+/* ---------- STAT CARDS ---------- */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+    margin-top:35px;
+
+}
+
+.stat-card{
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    transition:.35s;
+
+    backdrop-filter:blur(15px);
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 30px rgba(0,212,255,.25);
+
+}
+
+.stat-card i{
+
+    color:#00D4FF;
+
+    font-size:28px;
+
+    margin-bottom:15px;
+
+}
+
+.stat-card h4{
+
+    color:#BFC8E8;
+
+    margin-bottom:8px;
+
+}
+
+.stat-card h2{
+
+    font-size:36px;
+
+}
+
+/* ---------- DASHBOARD GRID ---------- */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+    margin-top:35px;
+
+}
+
+.ai-card,
+
+.progress-card{
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    padding:25px;
+
+}
+
+.ai-card h2,
+
+.progress-card h2{
+
+    margin-bottom:20px;
+
+}
+
+.ai-card ul{
+
+    list-style:none;
+
+}
+
+.ai-card li{
+
+    padding:14px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.circle{
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    border:12px solid #00D4FF;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:auto;
+
+    margin-top:25px;
+
+}
+
+/* ---------- BOTTOM GRID ---------- */
+
+.bottom-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-top:25px;
+
+}
+
+.activity-card,
+.events-card{
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    padding:25px;
+
+}
+
+.activity-card h2,
+.events-card h2{
+
+    margin-bottom:18px;
+
+}
+
+.activity-card ul,
+.events-card ul{
+
+    list-style:none;
+
+}
+
+.activity-card li,
+.events-card li{
+
+    padding:14px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+/* ---------- CARD COLORS ---------- */
+
+.innovation{
+    border-top:4px solid #00D4FF;
+}
+
+.projects{
+    border-top:4px solid #4ADE80;
+}
+
+.certificates{
+    border-top:4px solid #FACC15;
+}
+
+.hackathons{
+    border-top:4px solid #A855F7;
+}
+
+/* ---------- QUICK ACTIONS ---------- */
+
+.quick-actions{
+
+    margin-top:35px;
+
+}
+
+.quick-actions h2{
+
+    margin-bottom:20px;
+
+}
+
+.action-buttons{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.action-btn{
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(135deg,#00D4FF,#6C63FF);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.action-btn i{
+
+    margin-right:10px;
+
+}
+
+.action-btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 12px 25px rgba(0,212,255,.3);
+
+}
+}
+
