@@ -34,8 +34,8 @@ mongoose
   .then(() => console.log("📥 Connected to MongoDB Atlas successfully"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Start listening only when run locally (not inside Vercel serverless environment)
-if (process.env.NODE_ENV !== "production") {
+// Start listening when not in a Vercel serverless environment (e.g., local development or Railway)
+if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
   });
