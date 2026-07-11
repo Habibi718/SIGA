@@ -27,6 +27,14 @@ export default function StudentDashboard({ user, token, onLogout }) {
   const [meetingDate, setMeetingDate] = useState("");
   const [meetingTime, setMeetingTime] = useState("");
 
+  // Floating AI Assistant States
+  const [showAIChatbot, setShowAIChatbot] = useState(false);
+  const [aiChatMessages, setAiChatMessages] = useState([
+    { sender: "ai", text: "Hello! I am your SIGA Auto-Updater Bot. Describe a project, internship, certification, or academic grade you achieved, and I will update your portfolio database autonomously!" }
+  ]);
+  const [aiChatInput, setAiChatInput] = useState("");
+  const [aiChatLoading, setAiChatLoading] = useState(false);
+
   const fetchPortfolio = async () => {
     try {
       const res = await axios.get(`${API_URL}/api/portfolio/my`, {
@@ -150,6 +158,43 @@ export default function StudentDashboard({ user, token, onLogout }) {
     }
     alert(`Meeting request submitted successfully! Your mentor Prof. Sunita Deshmukh has been notified for your presentation on ${meetingDate} at ${meetingTime}.`);
     setShowMeetingModal(false);
+  };
+
+  // Floating AI Chatbot update logic
+  const handleSendAIChat = async (e) => {
+    e.preventDefault();
+    if (!aiChatInput.trim() || aiChatLoading) return;
+
+    const userMsg = aiChatInput.trim();
+    const newMsgs = [...aiChatMessages, { sender: "user", text: userMsg }];
+    setAiChatMessages(newMsgs);
+    setAiChatInput("");
+    setAiChatLoading(true);
+
+    try {
+      const res = await axios.post(
+        `${API_URL}/api/ai/update-portfolio`,
+        { message: userMsg },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setAiChatMessages([
+        ...newMsgs,
+        { sender: "ai", text: res.data.reply }
+      ]);
+      
+      // Auto-refresh the dashboard portfolio metrics immediately!
+      fetchPortfolio();
+    } catch (err) {
+      console.error(err);
+      const errMsg = err.response?.data?.reply || "I encountered an error trying to update your portfolio. Please make sure to state what you completed clearly.";
+      setAiChatMessages([
+        ...newMsgs,
+        { sender: "ai", text: errMsg }
+      ]);
+    } finally {
+      setAiChatLoading(false);
+    }
   };
 
   if (loading) {
@@ -809,6 +854,49 @@ export default function StudentDashboard({ user, token, onLogout }) {
           </div>
         </div>
       )}
+
+      {/* FLOATING PORTFOLIO AUTO-UPDATER AI CHATBOT */}
+      <div style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 999 }}>
+        <button 
+          onClick={() => setShowAIChatbot(!showAIChatbot)}
+          style={{ background: "#38bdf8", border: "none", width: "56px", height: "56px", borderRadius: "50%", color: "#0f172a", fontSize: "24px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 10px 15px -3px rgba(56,189,248,0.4)" }}
+        >
+          <i className="fas fa-robot"></i>
+        </button>
+
+        {showAIChatbot && (
+          <div style={{ position: "absolute", bottom: "72px", right: 0, width: "340px", height: "420px", background: "#1e293b", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px", display: "flex", flexDirection: "column", boxShadow: "0 20px 25px -5px rgba(0,0,0,0.5)", overflow: "hidden" }}>
+            <div style={{ background: "#38bdf8", padding: "14px 18px", color: "#0f172a", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <strong style={{ fontWeight: "700" }}>Portfolio AI Updater</strong>
+              <span onClick={() => setShowAIChatbot(false)} style={{ cursor: "pointer", fontSize: "20px" }}>&times;</span>
+            </div>
+            <div style={{ flex: 1, padding: "14px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "10px" }}>
+              {aiChatMessages.map((m, idx) => (
+                <div key={idx} style={{ alignSelf: m.sender === "user" ? "flex-end" : "flex-start", background: m.sender === "user" ? "#38bdf8" : "rgba(255,255,255,0.05)", color: m.sender === "user" ? "#0f172a" : "white", padding: "10px 14px", borderRadius: "12px", maxWidth: "80%", fontSize: "13px" }}>
+                  {m.text}
+                </div>
+              ))}
+              {aiChatLoading && (
+                <div style={{ alignSelf: "flex-start", background: "rgba(255,255,255,0.05)", color: "white", padding: "10px 14px", borderRadius: "12px", fontSize: "13px", fontStyle: "italic" }}>
+                  Parsing details & updating database...
+                </div>
+              )}
+            </div>
+            <form onSubmit={handleSendAIChat} style={{ display: "flex", borderTop: "1px solid rgba(255,255,255,0.05)", background: "#0f172a", padding: "8px" }}>
+              <input 
+                type="text" 
+                placeholder="Type: I built a React website called..." 
+                value={aiChatInput}
+                onChange={(e) => setAiChatInput(e.target.value)}
+                style={{ flex: 1, background: "transparent", border: "none", color: "white", padding: "8px", outline: "none", fontSize: "13px" }}
+                disabled={aiChatLoading}
+              />
+              <button type="submit" disabled={aiChatLoading} style={{ background: "#38bdf8", border: "none", color: "#0f172a", padding: "8px 12px", borderRadius: "8px", cursor: "pointer", fontWeight: "600" }}>Send</button>
+            </form>
+          </div>
+        )}
+      </div>
+
     </div>
   );
 }
