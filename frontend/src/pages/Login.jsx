@@ -75,7 +75,11 @@ export default function Login({ onLoginSuccess }) {
       }
     } catch (err) {
       console.error(err);
-      setError(err.response?.data?.msg || "Authentication failed. Check your connection.");
+      let errMsg = err.response?.data?.msg || "Authentication failed. Check your connection.";
+      if (selectedRole === "student" && errMsg === "Invalid Credentials") {
+        errMsg = "Invalid credentials. If you are a new student, please click 'Create an account' below to sign up!";
+      }
+      setError(errMsg);
     } finally {
       setLoading(false);
     }
