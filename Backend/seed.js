@@ -1,3 +1,7 @@
+const dns = require('dns');
+if (dns.setDefaultResultOrder) {
+  dns.setDefaultResultOrder('ipv4first');
+}
 const mongoose = require("mongoose");
 const User = require("./models/User");
 const Portfolio = require("./models/Portfolio");
@@ -6,6 +10,7 @@ require("dotenv").config();
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/siga_db";
 
 const usersData = [
+  { username: "admin", password: "adminpassword", role: "admin", fullName: "System Admin" },
   { username: "hod", password: "hodpassword", role: "hod", fullName: "Dr. Anil Sharma", department: "AI & ML" },
   { username: "faculty", password: "facultypassword", role: "faculty", fullName: "Prof. Sunita Deshmukh", department: "AI & ML" },
   { username: "241001", password: "studentpassword", role: "student", fullName: "Rahul Patil", department: "AI & ML", semester: "Sem 4" },
