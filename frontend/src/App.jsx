@@ -8,6 +8,7 @@ import StudentPortfolio from "./pages/StudentPortfolio";
 import Settings from "./pages/Settings";
 import FacultyDashboard from "./pages/FacultyDashboard";
 import HODDashboard from "./pages/HODDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -56,8 +57,10 @@ export default function App() {
                 <Navigate to="/student-dashboard" replace />
               ) : user?.role === "faculty" ? (
                 <Navigate to="/faculty-dashboard" replace />
-              ) : (
+              ) : user?.role === "hod" ? (
                 <Navigate to="/hod-dashboard" replace />
+              ) : (
+                <Navigate to="/admin-dashboard" replace />
               )
             ) : (
               <Login onLoginSuccess={handleLoginSuccess} />
@@ -155,6 +158,18 @@ export default function App() {
           element={
             token && user?.role === "hod" ? (
               <HODDashboard user={user} token={token} onLogout={handleLogout} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
+        {/* ADMIN ROUTES */}
+        <Route
+          path="/admin-dashboard"
+          element={
+            token && user?.role === "admin" ? (
+              <AdminDashboard user={user} token={token} onLogout={handleLogout} />
             ) : (
               <Navigate to="/login" replace />
             )

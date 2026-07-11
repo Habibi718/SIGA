@@ -66,6 +66,8 @@ export default function Login({ onLoginSuccess }) {
         navigate("/faculty-dashboard");
       } else if (user.role === "hod") {
         navigate("/hod-dashboard");
+      } else if (user.role === "admin") {
+        navigate("/admin-dashboard");
       }
     } catch (err) {
       console.error(err);
@@ -124,11 +126,13 @@ export default function Login({ onLoginSuccess }) {
                 {selectedRole === "student" && "Student Login"}
                 {selectedRole === "faculty" && "Faculty Login"}
                 {selectedRole === "hod" && "HOD Login"}
+                {selectedRole === "admin" && "Admin Login"}
               </h2>
               <p className="subtitle">
                 {selectedRole === "student" && "Login using your PRN"}
                 {selectedRole === "faculty" && "Login using Employee ID"}
                 {selectedRole === "hod" && "Head of Department Login"}
+                {selectedRole === "admin" && "System Administrator Login"}
               </p>
             </div>
 
@@ -142,6 +146,9 @@ export default function Login({ onLoginSuccess }) {
               <div className={`role ${selectedRole === "hod" ? "active" : ""}`} onClick={() => handleRoleChange("hod")}>
                 <i className="fa-solid fa-building-columns"></i> HOD
               </div>
+              <div className={`role ${selectedRole === "admin" ? "active" : ""}`} onClick={() => handleRoleChange("admin")}>
+                <i className="fa-solid fa-user-shield"></i> Admin
+              </div>
             </div>
 
             {error && <div className="error-alert" style={{ color: "#FF6B6B", marginBottom: "16px", fontSize: "14px", fontWeight: "600" }}>{error}</div>}
@@ -151,7 +158,13 @@ export default function Login({ onLoginSuccess }) {
                 <label>User ID</label>
                 <input
                   type="text"
-                  placeholder={selectedRole === "student" ? "PRN (e.g. 241001)" : "Employee ID (e.g. faculty)"}
+                  placeholder={
+                    selectedRole === "student"
+                      ? "PRN (e.g. 241001)"
+                      : selectedRole === "admin"
+                      ? "Admin Username (e.g. admin)"
+                      : "Employee ID (e.g. faculty)"
+                  }
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required

@@ -1,0 +1,366 @@
+.admin-dashboard-scope {
+  min-height: 100vh;
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+.admin-dashboard-scope .container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.admin-dashboard-scope .main-content {
+  flex: 1;
+  padding: 32px 40px;
+  overflow-y: auto;
+}
+
+.admin-dashboard-scope h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.admin-dashboard-scope .subtitle {
+  color: #94a3b8;
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+/* KPI ROW */
+.admin-dashboard-scope .kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.admin-dashboard-scope .kpi-card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-dashboard-scope .kpi-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.admin-dashboard-scope .kpi-val {
+  font-size: 36px;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 4px;
+}
+
+.admin-dashboard-scope .kpi-card:nth-child(2) .kpi-val { color: #f43f5e; }
+.admin-dashboard-scope .kpi-card:nth-child(3) .kpi-val { color: #10b981; }
+.admin-dashboard-scope .kpi-card:nth-child(4) .kpi-val { color: #eab308; }
+
+.admin-dashboard-scope .kpi-label {
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* CONTROLS SECTION */
+.admin-dashboard-scope .controls-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.admin-dashboard-scope .search-bar {
+  position: relative;
+  width: 320px;
+}
+
+.admin-dashboard-scope .search-bar input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.admin-dashboard-scope .search-bar input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+.admin-dashboard-scope .search-bar i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+}
+
+.admin-dashboard-scope .btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+}
+
+.admin-dashboard-scope .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* DATA TABLE */
+.admin-dashboard-scope .table-container {
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.admin-dashboard-scope table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-dashboard-scope th {
+  background: rgba(15, 23, 42, 0.6);
+  padding: 18px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-dashboard-scope td {
+  padding: 18px 24px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+}
+
+.admin-dashboard-scope tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ROLE BADGES */
+.admin-dashboard-scope .role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.admin-dashboard-scope .role-badge.student {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.admin-dashboard-scope .role-badge.faculty {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.admin-dashboard-scope .role-badge.hod {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+
+.admin-dashboard-scope .role-badge.admin {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+/* ACTION BUTTONS */
+.admin-dashboard-scope .actions-col {
+  display: flex;
+  gap: 12px;
+}
+
+.admin-dashboard-scope .btn-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-dashboard-scope .btn-icon.edit:hover {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.admin-dashboard-scope .btn-icon.delete:hover {
+  background: rgba(244, 63, 94, 0.2);
+  color: #f43f5e;
+}
+
+/* MODAL OVERLAY & CARD */
+.admin-dashboard-scope .modal-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.admin-dashboard-scope .modal-card {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  padding: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  animation: scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.admin-dashboard-scope .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.admin-dashboard-scope .modal-header h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+.admin-dashboard-scope .btn-close {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.admin-dashboard-scope .btn-close:hover {
+  color: white;
+}
+
+/* FORM ELEMENTS */
+.admin-dashboard-scope .form-group {
+  margin-bottom: 20px;
+}
+
+.admin-dashboard-scope .form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.admin-dashboard-scope .form-group input,
+.admin-dashboard-scope .form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.admin-dashboard-scope .form-group input:focus,
+.admin-dashboard-scope .form-group select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+.admin-dashboard-scope .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.admin-dashboard-scope .btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-dashboard-scope .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.admin-dashboard-scope .btn-danger {
+  background: #f43f5e;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-dashboard-scope .btn-danger:hover {
+  background: #e11d48;
+  box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

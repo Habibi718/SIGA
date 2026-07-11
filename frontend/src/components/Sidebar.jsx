@@ -76,6 +76,15 @@ export default function Sidebar({ user, onLogout }) {
           </>
         )}
 
+        {user?.role === "admin" && (
+          <>
+            <li className={activeClass("/admin-dashboard")} onClick={() => handleNav("/admin-dashboard")}>
+              <i className="fas fa-user-shield nav-icon"></i>
+              <span>Admin Panel</span>
+            </li>
+          </>
+        )}
+
         {/* Separator / Logout */}
         <li className="nav-item" onClick={onLogout} style={{ marginTop: "auto", borderTop: "1px solid var(--border)", paddingTop: "12px" }}>
           <i className="fas fa-sign-out-alt nav-icon"></i>
