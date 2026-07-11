@@ -6,6 +6,35 @@ const auth = require("../middleware/auth");
 
 // Helper function to calculate innovation score and radar metrics
 function calculateMetrics(portfolio) {
+  const hasProjects = portfolio.projects && portfolio.projects.length > 0;
+  const hasHackathons = portfolio.hackathons && portfolio.hackathons.length > 0;
+  const hasResearch = portfolio.research && portfolio.research.length > 0;
+  const hasCertificates = portfolio.certificates && portfolio.certificates.length > 0;
+  const hasInternships = portfolio.internships && portfolio.internships.length > 0;
+  const hasAchievements = portfolio.achievements && portfolio.achievements.length > 0;
+  const cgpa = portfolio.academics?.cgpa || 0;
+
+  if (!hasProjects && !hasHackathons && !hasResearch && !hasCertificates && !hasInternships && !hasAchievements && cgpa === 0) {
+    portfolio.innovationScore = 0;
+    portfolio.radarMetrics = {
+      research: 0,
+      technical: 0,
+      entrepreneurship: 0,
+      leadership: 0,
+      collaboration: 0,
+      creativity: 0
+    };
+    portfolio.semesterScores = {
+      s1: 0,
+      s2: 0,
+      s3: 0,
+      s4: 0,
+      s5: 0,
+      s6: 0
+    };
+    return;
+  }
+
   let score = 30; // base score
 
   // Count approved items or fallback to all items if they are pending (for simplicity in demo)
@@ -23,7 +52,6 @@ function calculateMetrics(portfolio) {
   score += approvedInternships.length * 10;
 
   // Add academic factor (e.g. cgpa * 1.5)
-  const cgpa = portfolio.academics.cgpa || 0;
   score += Math.round(cgpa * 1.5);
 
   // Cap score at 98%
@@ -67,6 +95,17 @@ router.get("/my", auth, async (req, res) => {
         studentId: req.user.id,
         prn: user.username,
         fullName: user.fullName,
+        personalInfo: {
+          email: user.username,
+          phone: "",
+          division: "",
+          dob: null,
+          gender: "",
+          linkedIn: "",
+          gitHub: "",
+          portfolioWebsite: "",
+          profilePhoto: ""
+        },
         academics: {
           semester: user.semester || "Sem 4"
         }

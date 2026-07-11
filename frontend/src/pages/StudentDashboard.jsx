@@ -99,7 +99,7 @@ export default function StudentDashboard({ user, token, onLogout }) {
 
   const renderStars = () => {
     const score = portfolio?.innovationScore || 0;
-    const count = score >= 90 ? 5 : score >= 80 ? 4 : score >= 60 ? 3 : 2;
+    const count = score >= 90 ? 5 : score >= 80 ? 4 : score >= 60 ? 3 : score >= 30 ? 2 : score > 0 ? 1 : 0;
     return (
       <div style={{ display: "flex", gap: "4px", color: "#fbbf24", fontSize: "16px" }}>
         {[...Array(5)].map((_, i) => (
